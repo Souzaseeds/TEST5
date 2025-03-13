@@ -1,41 +1,37 @@
-# KNSAI
+# KNSAI - Modules Odoo
 
-# Installation d'Odoo 18 en local
+Ce dépôt contient les modules personnalisés pour la gestion immobilière KNSAI :
 
-Ce projet contient les scripts nécessaires pour installer Odoo 18 en local sur Windows.
+## Modules
 
-## Prérequis
+### 1. Gestion des Logements (knsai_logement)
+- Gestion des biens immobiliers
+- Suivi des caractéristiques et de l'état des logements
+- Gestion des documents associés
 
-- Python 3.10 ou supérieur
-- PostgreSQL 15 ou supérieur
-- PowerShell
+### 2. Gestion des Artisans (knsai_artisan)
+- Gestion des artisans et prestataires
+- Suivi des compétences et disponibilités
+- Gestion des interventions
+
+### 3. Gestion Locative (knsai_location)
+- Gestion des baux
+- Suivi des paiements
+- Génération automatique des quittances
+- Système de relance automatique
+- États des lieux
 
 ## Installation
 
-1. Exécutez le script d'installation :
-```powershell
-.\install_odoo.ps1
-```
-
-2. Pour restaurer votre base de données :
-```powershell
-.\restore_database.ps1 -DumpFile chemin/vers/votre/dump.sql
-```
-
-3. Pour démarrer Odoo :
-```powershell
-.\odoo-venv\Scripts\python.exe odoo-bin -c odoo.conf
-```
+Ces modules sont conçus pour Odoo 18.0 et sont déployés via Odoo.sh.
 
 ## Configuration
 
-- L'interface web sera accessible à l'adresse : http://localhost:8069
-- Identifiants par défaut :
-  - Email : admin
-  - Mot de passe : admin
+Après l'installation, vous trouverez les nouveaux menus :
+- "Gestion Locative"
+- "Logements"
+- "Artisans"
 
-## Notes importantes
+## Support
 
-- Assurez-vous que PostgreSQL est en cours d'exécution avant de lancer Odoo
-- Le mot de passe de la base de données est configuré sur 'odoo' par défaut
-- Pour la synchronisation avec Odoo.sh, utilisez Git pour gérer vos modifications
+Pour toute question ou support, contactez l'équipe KNSAI.
