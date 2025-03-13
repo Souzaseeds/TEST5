@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_relance">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Relance de paiement</h2>
+                        <div class="row mt32 mb32">
+                            <div class="col-6">
+                                <strong>Bailleur :</strong>
+                                <div t-field="o.bail_id.bailleur_id"/>
+                                <div t-field="o.bail_id.bailleur_id.street"/>
+                                <div t-field="o.bail_id.bailleur_id.street2"/>
+                                <div t-field="o.bail_id.bailleur_id.city"/>
+                                <div t-field="o.bail_id.bailleur_id.zip"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Locataire :</strong>
+                                <div t-field="o.bail_id.locataire_id"/>
+                                <div t-field="o.bail_id.locataire_id.street"/>
+                                <div t-field="o.bail_id.locataire_id.street2"/>
+                                <div t-field="o.bail_id.locataire_id.city"/>
+                                <div t-field="o.bail_id.locataire_id.zip"/>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-12">
+                                <strong>Logement :</strong>
+                                <div t-field="o.bail_id.logement_id"/>
+                                <div t-field="o.bail_id.logement_id.adresse"/>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-12">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Type de relance</th>
+                                            <th>Montant</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <t t-if="o.type_relance == 'premier_rappel'">Premier rappel</t>
+                                                <t t-if="o.type_relance == 'deuxieme_rappel'">Deuxième rappel</t>
+                                                <t t-if="o.type_relance == 'mise_en_demeure'">Mise en demeure</t>
+                                                <t t-if="o.type_relance == 'autre'">Autre</t>
+                                            </td>
+                                            <td><span t-field="o.montant"/> €</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-12">
+                                <p>Par la présente, je vous rappelle que le loyer et les charges pour le mois en cours s'élèvent à <span t-field="o.montant"/> €.</p>
+                                <p>Je vous remercie de bien vouloir effectuer le paiement dans les plus brefs délais.</p>
+                                <p>En cas de non-paiement, je me verrai contraint(e) d'engager les procédures nécessaires.</p>
+                                <p>Fait à <span t-field="o.bail_id.bailleur_id.city"/>, le <span t-field="o.date"/></p>
+                            </div>
+                        </div>
+                        <div class="row mt32">
+                            <div class="col-6">
+                                <p>Signature du bailleur :</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Signature du locataire :</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_relance" model="ir.actions.report">
+        <field name="name">Relance de paiement</field>
+        <field name="model">knsai.relance</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">knsai_location.report_relance</field>
+        <field name="report_file">knsai_location.report_relance</field>
+        <field name="print_report_name">'Relance de paiement - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_knsai_relance"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo> 

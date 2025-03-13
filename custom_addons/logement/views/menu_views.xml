@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu principal -->
+    <menuitem id="menu_knsai_root"
+              name="KNSAI"
+              sequence="10"/>
+
+    <!-- Menu Immobilier -->
+    <menuitem id="menu_knsai_immobilier"
+              name="Immobilier"
+              parent="menu_knsai_root"
+              sequence="10"/>
+
+    <!-- Menu Logements -->
+    <menuitem id="menu_knsai_logement"
+              name="Logements"
+              parent="menu_knsai_immobilier"
+              action="action_logement"
+              sequence="10"/>
+</odoo> 

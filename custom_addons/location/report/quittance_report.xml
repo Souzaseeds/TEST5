@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_quittance">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Quittance de loyer</h2>
+                        <div class="row mt32 mb32">
+                            <div class="col-6">
+                                <strong>Bailleur :</strong>
+                                <div t-field="o.bail_id.bailleur_id"/>
+                                <div t-field="o.bail_id.bailleur_id.street"/>
+                                <div t-field="o.bail_id.bailleur_id.street2"/>
+                                <div t-field="o.bail_id.bailleur_id.city"/>
+                                <div t-field="o.bail_id.bailleur_id.zip"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Locataire :</strong>
+                                <div t-field="o.bail_id.locataire_id"/>
+                                <div t-field="o.bail_id.locataire_id.street"/>
+                                <div t-field="o.bail_id.locataire_id.street2"/>
+                                <div t-field="o.bail_id.locataire_id.city"/>
+                                <div t-field="o.bail_id.locataire_id.zip"/>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-12">
+                                <strong>Logement :</strong>
+                                <div t-field="o.bail_id.logement_id"/>
+                                <div t-field="o.bail_id.logement_id.adresse"/>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-12">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Période</th>
+                                            <th>Montant</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Du <span t-field="o.periode_debut"/> au <span t-field="o.periode_fin"/></td>
+                                            <td><span t-field="o.montant"/> €</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-12">
+                                <p>Je soussigné(e) <span t-field="o.bail_id.bailleur_id"/> propriétaire du logement désigné ci-dessus, déclare avoir reçu de <span t-field="o.bail_id.locataire_id"/> la somme de <span t-field="o.montant"/> € au titre du loyer et des charges pour la période du <span t-field="o.periode_debut"/> au <span t-field="o.periode_fin"/>.</p>
+                                <p>Cette quittance annule tous les reçus qui auraient pu être établis précédemment pour la période considérée.</p>
+                                <p>Fait à <span t-field="o.bail_id.bailleur_id.city"/>, le <span t-field="o.date"/></p>
+                            </div>
+                        </div>
+                        <div class="row mt32">
+                            <div class="col-6">
+                                <p>Signature du bailleur :</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Signature du locataire :</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_quittance" model="ir.actions.report">
+        <field name="name">Quittance de loyer</field>
+        <field name="model">knsai.quittance</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">knsai_location.report_quittance</field>
+        <field name="report_file">knsai_location.report_quittance</field>
+        <field name="print_report_name">'Quittance de loyer - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_knsai_quittance"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo> 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu principal -->
+    <menuitem id="menu_location_root"
+              name="Gestion Locative"
+              sequence="10"/>
+
+    <!-- Menu Baux -->
+    <menuitem id="menu_bail"
+              name="Baux"
+              parent="menu_location_root"
+              action="action_bail"
+              sequence="10"/>
+
+    <!-- Menu Paiements -->
+    <menuitem id="menu_paiement"
+              name="Paiements"
+              parent="menu_location_root"
+              action="action_paiement"
+              sequence="20"/>
+
+    <!-- Menu Relances -->
+    <menuitem id="menu_relance"
+              name="Relances"
+              parent="menu_location_root"
+              action="action_relance"
+              sequence="30"/>
+
+    <!-- Menu Configuration -->
+    <menuitem id="menu_location_config"
+              name="Configuration"
+              parent="menu_location_root"
+              sequence="100"/>
+
+    <!-- Menu Séquences -->
+    <menuitem id="menu_location_sequence"
+              name="Séquences"
+              parent="menu_location_config"
+              sequence="10"/>
+</odoo> 

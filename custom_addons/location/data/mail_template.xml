@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Template email pour les quittances -->
+        <record id="email_template_quittance" model="mail.template">
+            <field name="name">Quittance de loyer</field>
+            <field name="model_id" ref="model_knsai_quittance"/>
+            <field name="subject">{{ object.name }} - Quittance de loyer</field>
+            <field name="email_from">{{ user.email_formatted or user.company_id.email }}</field>
+            <field name="email_to">{{ object.bail_id.locataire_id.email }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Bonjour {{ object.bail_id.locataire_id.name }},
+                        <br/><br/>
+                        Veuillez trouver ci-joint votre quittance de loyer pour la période du {{ object.periode_debut }} au {{ object.periode_fin }}.
+                        <br/><br/>
+                        Montant : {{ object.montant }} €
+                        <br/><br/>
+                        Cordialement,
+                        <br/>
+                        {{ user.company_id.name }}
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <!-- Template email pour les relances -->
+        <record id="email_template_relance" model="mail.template">
+            <field name="name">Relance de paiement</field>
+            <field name="model_id" ref="model_knsai_relance"/>
+            <field name="subject">{{ object.name }} - Relance de paiement</field>
+            <field name="email_from">{{ user.email_formatted or user.company_id.email }}</field>
+            <field name="email_to">{{ object.bail_id.locataire_id.email }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Bonjour {{ object.bail_id.locataire_id.name }},
+                        <br/><br/>
+                        Veuillez trouver ci-joint une relance concernant le paiement de votre loyer.
+                        <br/><br/>
+                        Montant dû : {{ object.montant }} €
+                        <br/><br/>
+                        Nous vous remercions de bien vouloir effectuer le paiement dans les plus brefs délais.
+                        <br/><br/>
+                        Cordialement,
+                        <br/>
+                        {{ user.company_id.name }}
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <!-- Template email pour les états des lieux -->
+        <record id="email_template_etat_des_lieux" model="mail.template">
+            <field name="name">État des lieux</field>
+            <field name="model_id" ref="model_knsai_etat_des_lieux"/>
+            <field name="subject">{{ object.name }} - État des lieux</field>
+            <field name="email_from">{{ user.email_formatted or user.company_id.email }}</field>
+            <field name="email_to">{{ object.bail_id.locataire_id.email }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Bonjour {{ object.bail_id.locataire_id.name }},
+                        <br/><br/>
+                        Veuillez trouver ci-joint l'état des lieux du {{ object.type == 'entree' and 'd\'entrée' or 'de sortie' }} concernant votre logement.
+                        <br/><br/>
+                        Date : {{ object.date }}
+                        <br/><br/>
+                        Cordialement,
+                        <br/>
+                        {{ user.company_id.name }}
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo> 

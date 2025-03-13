@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue formulaire Artisan -->
+    <record id="view_artisan_form" model="ir.ui.view">
+        <field name="name">knsai.artisan.form</field>
+        <field name="model">knsai.artisan</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_archive" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button"/>
+                    </button>
+                    <field name="disponibilite" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nom de l'artisan..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="reference" readonly="1"/>
+                            <field name="type_artisan"/>
+                            <field name="telephone"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="siret"/>
+                            <field name="adresse"/>
+                            <field name="assurance"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Compétences">
+                            <field name="competence_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Interventions">
+                            <field name="intervention_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="logement_id"/>
+                                    <field name="date_debut"/>
+                                    <field name="date_fin"/>
+                                    <field name="etat"/>
+                                    <field name="cout"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Documents">
+                            <field name="documents" widget="many2many_binary"/>
+                        </page>
+                        <page string="Historique">
+                            <field name="message_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue liste Artisan -->
+    <record id="view_artisan_list" model="ir.ui.view">
+        <field name="name">knsai.artisan.list</field>
+        <field name="model">knsai.artisan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="type_artisan"/>
+                <field name="disponibilite"/>
+                <field name="telephone"/>
+                <field name="date_modification"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vue recherche Artisan -->
+    <record id="view_artisan_search" model="ir.ui.view">
+        <field name="name">knsai.artisan.search</field>
+        <field name="model">knsai.artisan</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="reference"/>
+                <field name="siret"/>
+                <field name="email"/>
+                <separator/>
+                <filter string="Plombier" name="plombier" domain="[('type_artisan','=','plombier')]"/>
+                <filter string="Électricien" name="electricien" domain="[('type_artisan','=','electricien')]"/>
+                <filter string="Menuisier" name="menuisier" domain="[('type_artisan','=','menuisier')]"/>
+                <filter string="Peintre" name="peintre" domain="[('type_artisan','=','peintre')]"/>
+                <separator/>
+                <filter string="Disponible" name="disponible" domain="[('disponibilite','=','disponible')]"/>
+                <filter string="Occupé" name="occupe" domain="[('disponibilite','=','occupe')]"/>
+                <filter string="Indisponible" name="indisponible" domain="[('disponibilite','=','indisponible')]"/>
+                <group expand="0" string="Regrouper par">
+                    <filter string="Type d'artisan" name="group_by_type" context="{'group_by':'type_artisan'}"/>
+                    <filter string="Disponibilité" name="group_by_disponibilite" context="{'group_by':'disponibilite'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Artisan -->
+    <record id="action_artisan" model="ir.actions.act_window">
+        <field name="name">Artisans</field>
+        <field name="res_model">knsai.artisan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_artisan_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer un nouvel artisan
+            </p>
+        </field>
+    </record>
+
+    <!-- Vue formulaire Intervention -->
+    <record id="view_intervention_form" model="ir.ui.view">
+        <field name="name">knsai.intervention.form</field>
+        <field name="model">knsai.intervention</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_archive" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button"/>
+                    </button>
+                    <field name="etat" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="artisan_id"/>
+                            <field name="logement_id"/>
+                        </group>
+                        <group>
+                            <field name="date_debut"/>
+                            <field name="date_fin"/>
+                            <field name="cout"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Documents">
+                            <field name="documents" widget="many2many_binary"/>
+                        </page>
+                        <page string="Historique">
+                            <field name="message_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue liste Intervention -->
+    <record id="view_intervention_list" model="ir.ui.view">
+        <field name="name">knsai.intervention.list</field>
+        <field name="model">knsai.intervention</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="artisan_id"/>
+                <field name="logement_id"/>
+                <field name="date_debut"/>
+                <field name="date_fin"/>
+                <field name="etat"/>
+                <field name="cout"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vue recherche Intervention -->
+    <record id="view_intervention_search" model="ir.ui.view">
+        <field name="name">knsai.intervention.search</field>
+        <field name="model">knsai.intervention</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="artisan_id"/>
+                <field name="logement_id"/>
+                <separator/>
+                <filter string="Planifié" name="planifie" domain="[('etat','=','planifie')]"/>
+                <filter string="En cours" name="en_cours" domain="[('etat','=','en_cours')]"/>
+                <filter string="Terminé" name="termine" domain="[('etat','=','termine')]"/>
+                <filter string="Annulé" name="annule" domain="[('etat','=','annule')]"/>
+                <group expand="0" string="Regrouper par">
+                    <filter string="Artisan" name="group_by_artisan" context="{'group_by':'artisan_id'}"/>
+                    <filter string="Logement" name="group_by_logement" context="{'group_by':'logement_id'}"/>
+                    <filter string="État" name="group_by_etat" context="{'group_by':'etat'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Intervention -->
+    <record id="action_intervention" model="ir.actions.act_window">
+        <field name="name">Interventions</field>
+        <field name="res_model">knsai.intervention</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_intervention_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer une nouvelle intervention
+            </p>
+        </field>
+    </record>
+</odoo> 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue formulaire -->
+    <record id="view_relance_form" model="ir.ui.view">
+        <field name="name">knsai.relance.form</field>
+        <field name="model">knsai.relance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_envoyer" string="Envoyer" type="object" class="oe_highlight" attrs="{'invisible': [('etat', '!=', 'brouillon')]}"/>
+                    <button name="action_annuler" string="Annuler" type="object" class="oe_highlight" attrs="{'invisible': [('etat', '=', 'annule')]}"/>
+                    <field name="etat" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="bail_id"/>
+                            <field name="date"/>
+                            <field name="montant"/>
+                        </group>
+                        <group>
+                            <field name="type_relance"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Documents">
+                            <field name="documents"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue liste -->
+    <record id="view_relance_tree" model="ir.ui.view">
+        <field name="name">knsai.relance.tree</field>
+        <field name="model">knsai.relance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="bail_id"/>
+                <field name="date"/>
+                <field name="montant"/>
+                <field name="type_relance"/>
+                <field name="etat"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vue recherche -->
+    <record id="view_relance_search" model="ir.ui.view">
+        <field name="name">knsai.relance.search</field>
+        <field name="model">knsai.relance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="bail_id"/>
+                <separator/>
+                <filter string="Brouillons" name="brouillon" domain="[('etat', '=', 'brouillon')]"/>
+                <filter string="Envoyés" name="envoye" domain="[('etat', '=', 'envoye')]"/>
+                <filter string="Annulés" name="annule" domain="[('etat', '=', 'annule')]"/>
+                <group expand="0" string="Regrouper par">
+                    <filter string="Bail" name="group_by_bail" context="{'group_by': 'bail_id'}"/>
+                    <filter string="Type de relance" name="group_by_type" context="{'group_by': 'type_relance'}"/>
+                    <filter string="État" name="group_by_etat" context="{'group_by': 'etat'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_relance" model="ir.actions.act_window">
+        <field name="name">Relances</field>
+        <field name="res_model">knsai.relance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_envoye': 1}</field>
+    </record>
+</odoo> 

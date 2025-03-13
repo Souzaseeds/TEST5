@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu principal -->
+    <menuitem id="menu_knsai_artisan_root"
+              name="Artisans"
+              sequence="10"/>
+
+    <!-- Sous-menu Artisans -->
+    <menuitem id="menu_knsai_artisan"
+              name="Artisans"
+              parent="menu_knsai_artisan_root"
+              action="action_artisan"
+              sequence="10"/>
+
+    <!-- Sous-menu Interventions -->
+    <menuitem id="menu_knsai_intervention"
+              name="Interventions"
+              parent="menu_knsai_artisan_root"
+              action="action_intervention"
+              sequence="20"/>
+</odoo> 

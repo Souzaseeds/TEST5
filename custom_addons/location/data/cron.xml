@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Tâche planifiée pour les relances automatiques -->
+        <record id="ir_cron_relance_automatique" model="ir.cron">
+            <field name="name">Relances automatiques</field>
+            <field name="model_id" ref="model_knsai_bail"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_relance_automatique()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo> 

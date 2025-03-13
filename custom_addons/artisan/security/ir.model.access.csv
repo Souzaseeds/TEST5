@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_knsai_artisan_user,knsai.artisan.user,model_knsai_artisan,base.group_user,1,1,1,0
+access_knsai_artisan_manager,knsai.artisan.manager,model_knsai_artisan,base.group_system,1,1,1,1
+access_knsai_competence_user,knsai.competence.user,model_knsai_competence,base.group_user,1,1,1,0
+access_knsai_competence_manager,knsai.competence.manager,model_knsai_competence,base.group_system,1,1,1,1
+access_knsai_intervention_user,knsai.intervention.user,model_knsai_intervention,base.group_user,1,1,1,0
+access_knsai_intervention_manager,knsai.intervention.manager,model_knsai_intervention,base.group_system,1,1,1,1 

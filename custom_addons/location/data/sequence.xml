@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Séquences -->
+    <data noupdate="1">
+        <!-- Séquences Baux -->
+        <record id="seq_bail" model="ir.sequence">
+            <field name="name">Séquence Baux</field>
+            <field name="code">knsai.bail</field>
+            <field name="prefix">BAIL/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Séquences Paiements -->
+        <record id="seq_paiement" model="ir.sequence">
+            <field name="name">Séquence Paiements</field>
+            <field name="code">knsai.paiement</field>
+            <field name="prefix">PAI/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Séquences Relances -->
+        <record id="seq_relance" model="ir.sequence">
+            <field name="name">Séquence Relances</field>
+            <field name="code">knsai.relance</field>
+            <field name="prefix">REL/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Séquences Quittances -->
+        <record id="seq_quittance" model="ir.sequence">
+            <field name="name">Séquence Quittances</field>
+            <field name="code">knsai.quittance</field>
+            <field name="prefix">QUI/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Séquences États des lieux -->
+        <record id="seq_etat_des_lieux" model="ir.sequence">
+            <field name="name">Séquence États des lieux</field>
+            <field name="code">knsai.etat_des_lieux</field>
+            <field name="prefix">EDL/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo> 

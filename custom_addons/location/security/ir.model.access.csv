@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_knsai_bail_user,knsai.bail.user,model_knsai_bail,base.group_user,1,1,1,0
+access_knsai_bail_manager,knsai.bail.manager,model_knsai_bail,base.group_system,1,1,1,1
+access_knsai_paiement_user,knsai.paiement.user,model_knsai_paiement,base.group_user,1,1,1,0
+access_knsai_paiement_manager,knsai.paiement.manager,model_knsai_paiement,base.group_system,1,1,1,1
+access_knsai_relance_user,knsai.relance.user,model_knsai_relance,base.group_user,1,1,1,0
+access_knsai_relance_manager,knsai.relance.manager,model_knsai_relance,base.group_system,1,1,1,1
+access_knsai_quittance_user,knsai.quittance.user,model_knsai_quittance,base.group_user,1,1,1,0
+access_knsai_quittance_manager,knsai.quittance.manager,model_knsai_quittance,base.group_system,1,1,1,1
+access_knsai_etat_des_lieux_user,knsai.etat_des_lieux.user,model_knsai_etat_des_lieux,base.group_user,1,1,1,0
+access_knsai_etat_des_lieux_manager,knsai.etat_des_lieux.manager,model_knsai_etat_des_lieux,base.group_system,1,1,1,1
+access_knsai_quittance_wizard_user,knsai.quittance.wizard.user,model_knsai_quittance_wizard,base.group_user,1,1,1,1
+access_knsai_relance_wizard_user,knsai.relance.wizard.user,model_knsai_relance_wizard,base.group_user,1,1,1,1 
